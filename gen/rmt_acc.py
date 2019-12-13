@@ -1,10 +1,17 @@
 from pexpect import pxssh
 import getpass
+import sys
 
+if len(sys.argv) < 4:
+  print("rmt ip-addr user-id- passwd")
+
+ip = sys.argv[1]
+uid = sys.argv[2]
+pasw = sys.argv[3]
 
 try:
     s = pxssh.pxssh()    
-    s.login('10.111.128.58', 'root', 'caveo123')
+    s.login(ip, uid, pasw)
     s.sendline('uptime')
     s.prompt()
     line = s.before
