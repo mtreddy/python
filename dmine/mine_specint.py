@@ -22,7 +22,7 @@ class minespec:
                         ddict['Test Sponsor  :'] = score.text
                         #print("Test Sponsor  :%s" % (score.text))
                     if score.attrs['class'][0] == "hw_model":
-                        ddict['HW Model      :'] =  score.text
+                        ddict['HW Model      :'] =  score.text.split("\n")[0]
                         #print("HW Model      :%s" % (score.text.split("\n")[0]))
                     if score.attrs['class'][0] == "basemean":
                         ddict['Basemean      :'] = (re.findall(r'\d+',score.text)[0])
@@ -55,7 +55,7 @@ class minespec:
                         ddict['Test Sponsor  :'] = score.text
                         #print("Test Sponsor  :%s" % (score.text))
                     if score.attrs['class'][0] == "hw_model":
-                        ddict['HW Model      :'] =  score.text
+                        ddict['HW Model      :'] =  score.text.split("\n")[0]
                         #print("HW Model      :%s" % (score.text.split("\n")[0]))
                     if score.attrs['class'][0] == "basemean":
                         ddict['Basemean      :'] = (re.findall(r'\d+',score.text)[0])
@@ -97,7 +97,8 @@ soup = BeautifulSoup(res.text, "html.parser")
 lst = soup.find_all("tr")
 print(len(lst))
 
-
 specint = minespec()
 ids = specint.findIntScoreForId(lst,Id="7642")
+print(ids[1])
 vids = specint.findIntForVendorId(lst,vId="ASUS")
+print(vids[1])
