@@ -13,6 +13,7 @@ class wsearch:
         res = search(tstr, num=tnum, stop=tstop)
         for lnks in res:
             links.append(lnks)
+        print(links)
         return links
 
     def scrapeWeb(self, tstr):
@@ -28,5 +29,5 @@ class wsearch:
 expire_after = datetime.timedelta(days=3)
 session = requests_cache.CachedSession(cache_name='cache', backend='sqlite',expire_after=expire_after)
 ws = wsearch()
-tdata = ws.scrapeWeb("Avacado")
+tdata = ws.scrapeWeb("google analyst rating")
 print(tdata[0])
