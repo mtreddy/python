@@ -13,7 +13,7 @@ class wsearch:
         res = search(tstr, num=tnum, stop=tstop)
         for lnks in res:
             links.append(lnks)
-        print(links)
+        #print(links)
         return links
 
     def scrapeWeb(self, tstr):
