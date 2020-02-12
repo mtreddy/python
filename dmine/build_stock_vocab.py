@@ -19,7 +19,7 @@ class vocab:
     def vReadPdfTables(self, fpath):
         pobj = open(fpath,'rb')
         pdfrd = PyPDF2.PdfFileReader(pobj)
-        tables=tabula.read_pdf(pf, pages="all", multiple_tables=True)
+        tables=tabula.read_pdf(fpath, pages="all", multiple_tables=True)
         return tables
 
     def vReadPdfText(self, fpath):

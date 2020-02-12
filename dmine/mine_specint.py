@@ -42,7 +42,7 @@ class minespec:
                         #print("No of Sockets :%s" % (re.findall(r'\d+',score.text)[0]))
                 data.append(ddict)
         return data
-    ## Function which takes Vendor name as ibput and dups different part-ids and scores
+    ## Function which takes Vendor name as ibput and dumps different part-ids and scores
     def findIntForVendorId(self, lst, vId):
         data = []
         pattrn = r'%s' % (vId)
@@ -75,7 +75,7 @@ class minespec:
                         #print("No of Sockets :%s" % (re.findall(r'\d+',score.text)[0]))
                 data.append(ddict)
         return data
-    ## Function which takes Vendor name as ibput and dups different part-ids and scores
+    ## Function which takes Vendor name as ibput and dumps different part-ids and scores
     def findIntForChipsVendorId(self, lst, vId):
         data = []
         pattrn = r'%s' % (vId)
@@ -112,9 +112,18 @@ class minespec:
     ## Criteria need to be unique, If it finds more than one result 
     ## no result file will be downloaded
     ## criteria = {'test_sponsor':'Dell', 'core_id':'7662', 'hw_chips': '2', 'base_copies':'128'}
-    def downLoadSPecIntTexctResults(self, lst, criteria, blink):
-        if len(criteria) == 0 or type(criteria) != dict:
-            print("Pl pass valid criteria \n EX:criteria = {'test_sponsor':'Dell', 'core_id':'7662', 'hw_chips': '2', 'base_copies':'128'} ")
+    def downLoadSPecIntTextResults(self, lst, vId ):
+        data = []
+        base = 'https://www.spec.org/cpu2017/'
+        pattrn = r'%s' % (vId)
+        for itm in lst:
+            if (len(re.findall(r'EPYC',itm.text)) != 0) and (len(re.findall(pattrn,itm.text)) != 0):
+                tag = itm.find_all("td");
+                #print("\n")
+                for link in tag:
+                    print(link.find_all("a")[2].attrs['href'])
+        return data
+
 
 
     ## Function to analyze SPECINT results
@@ -132,7 +141,8 @@ lst = soup.find_all("tr")
 print(len(lst))
 
 specint = minespec()
-ids = specint.findIntScoreForId(lst,Id="7542")
-print(ids[1])
+#ids = specint.findIntScoreForId(lst,Id="7542")
+#print(ids)
 #vids = specint.findIntForVendorId(lst,vId="ASUS")
 #print(vids[1])
+ids = specint.downLoadSPecIntTextResults(lst,vId="7542")
