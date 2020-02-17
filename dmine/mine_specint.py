@@ -112,16 +112,28 @@ class minespec:
     ## Criteria need to be unique, If it finds more than one result 
     ## no result file will be downloaded
     ## criteria = {'test_sponsor':'Dell', 'core_id':'7662', 'hw_chips': '2', 'base_copies':'128'}
-    def downLoadSPecIntTextResults(self, lst, vId ):
+    def anlyzeSPecIntTextResults(self, lst, vId ):
         data = []
-        base = 'https://www.spec.org/cpu2017/'
+        base = 'https://www.spec.org/cpu2017/results/'
         pattrn = r'%s' % (vId)
         for itm in lst:
             if (len(re.findall(r'EPYC',itm.text)) != 0) and (len(re.findall(pattrn,itm.text)) != 0):
                 tag = itm.find_all("td");
-                #print("\n")
+                if len(tag) == 0:
+                    continue
                 for link in tag:
-                    print(link.find_all("a")[2].attrs['href'])
+                    if len(link) == 0:
+                        continue
+                    tt = link.find_all("a")
+                    if len(tt) == 0:
+                        continue
+                    tlink = base + tt[2].attrs['href']
+        for link in data:
+            htm = get(link)
+            soup = BeautifulSoup(htm.text, 'html.parser')
+            data.append(soup.text)
+
+        print(data)
         return data
 
 
@@ -145,4 +157,4 @@ specint = minespec()
 #print(ids)
 #vids = specint.findIntForVendorId(lst,vId="ASUS")
 #print(vids[1])
-ids = specint.downLoadSPecIntTextResults(lst,vId="7542")
+ids = specint.anlyzeSPecIntTextResults(lst,vId="7542")
