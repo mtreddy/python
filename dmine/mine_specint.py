@@ -114,6 +114,7 @@ class minespec:
     ## criteria = {'test_sponsor':'Dell', 'core_id':'7662', 'hw_chips': '2', 'base_copies':'128'}
     def anlyzeSPecIntTextResults(self, lst, vId ):
         data = []
+        links = []
         base = 'https://www.spec.org/cpu2017/results/'
         pattrn = r'%s' % (vId)
         for itm in lst:
@@ -128,12 +129,13 @@ class minespec:
                     if len(tt) == 0:
                         continue
                     tlink = base + tt[2].attrs['href']
-        for link in data:
+                    links.append(tlink)
+        for link in links:
             htm = get(link)
             soup = BeautifulSoup(htm.text, 'html.parser')
-            data.append(soup.text)
+            data.append(soup)
 
-        print(data)
+        #print(data)
         return data
 
 
@@ -157,4 +159,4 @@ specint = minespec()
 #print(ids)
 #vids = specint.findIntForVendorId(lst,vId="ASUS")
 #print(vids[1])
-ids = specint.anlyzeSPecIntTextResults(lst,vId="7542")
+data = specint.anlyzeSPecIntTextResults(lst,vId="7542")
