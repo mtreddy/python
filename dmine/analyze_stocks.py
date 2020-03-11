@@ -26,7 +26,7 @@ class anaStocks:
         for link in res:
             links.append(link)
         for link in links:
-            if link.find("yahoo") != -1:
+            if link.find("finance.yahoo.com\/quote") != -1:
                 break
         print(link)
         #Then get data
@@ -89,9 +89,30 @@ class anaStocks:
                 
                 pr = re.findall(r'(Earnings Date)',val.text)
                 if len(pr) != 0:
-                    pr = line.split("Date")
+                    print(val.text)
+                    pr = val.text.split("Date")
                     print("Earnings dates %s" % (pr[1]))
-                    
+    def getRatings(self, quote):
+        #first get link to yahoo finance
+        tstr = "%s stock" % (quote)
+        print(tstr)
+        links = []
+        lnk = ''
+        res = search(tstr,num=10,stop=10)        
+        for link in res:
+            links.append(link)
+        for link in links:
+            if link.find("www.marketbeat.com") != -1:
+                break
+        print(link)
+        #Then get data
+        htm = get(link)
+        sp = BeautifulSoup(htm.text,'html.parser')
+        tr = sp.find_all("tbody")        
+        for tag in tr:
+            for val in tag:
+                 print(val.text)                                
+                                         
                      
                     
                     
@@ -106,3 +127,4 @@ stocks = anaStocks()
 #print(data[:10])
 
 stocks.getQuoteInfo("AMD")
+
