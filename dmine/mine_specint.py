@@ -143,10 +143,24 @@ class minespec:
     ## Function to analyze SPECINT results
     def analyzeSpectIntResults(self, txtFile):
         print("Need to implement")
+args = sys.argv
+if len(args) == 1:
+  print("python mine_specint.py [intrate/fprate] [CPU name]")
+elif len(args) == 3:
+    print(" Here the results for %s %s" % (args[1],args[2]))
+    Id = args[2]
+else:
+    print("args passed %s" % (args))
+    Id = "7542"
 
 ## This will need part number
-url = "https://www.spec.org/cpu2017/results/rint2017.html"
-rlink = "https://www.spec.org/cpu2017/results/"
+if args[1] == "fprate":
+   url = "https://www.spec.org/cpu2017/results/rfp2017.html"
+   rlink = "https://www.spec.org/cpu2017/results/"
+else:
+   url = "https://www.spec.org/cpu2017/results/rint2017.html"
+   rlink = "https://www.spec.org/cpu2017/results/"
+
 requests_cache.install_cache('specint_cache', backend='sqlite', expire_after=180)
 res = get(url)
 soup = BeautifulSoup(res.text, "html.parser")
@@ -155,8 +169,13 @@ lst = soup.find_all("tr")
 print(len(lst))
 
 specint = minespec()
-#ids = specint.findIntScoreForId(lst,Id="7542")
+ids = specint.findIntScoreForId(lst,Id)
 #print(ids)
+if 1:
+    for itm in ids:
+        for key in itm:
+            print(key, itm[key])
+        print("\n")
 #vids = specint.findIntForVendorId(lst,vId="ASUS")
 #print(vids[1])
-data = specint.anlyzeSPecIntTextResults(lst,vId="7542")
+#data = specint.anlyzeSPecIntTextResults(lst,vId="7542")
