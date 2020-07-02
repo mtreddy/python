@@ -7,7 +7,7 @@ import requests_cache
 import pandas_datareader.data as web
 from bs4 import BeautifulSoup 
 # pip install requests_html
-from yahoo_fin import options
+from yahoo_fin import options as opt
 from yahoo_fin import stock_info as si
 class anaOptions:
     def __init__(self):
@@ -18,11 +18,11 @@ class anaOptions:
         return dt
 
     def getOptionDates(self, quote):
-        nflx_dates = options.get_expiration_dates(quote)
+        nflx_dates = opt.get_expiration_dates(quote)
         return nflx_dates
     
     def getOptionChain(self, quote, dates):
-        chain = options.get_options_chain(quote, nflx_dates[0])
+        chain = opt.get_options_chain(quote, nflx_dates[0])
         return chain
     def getStrangle(self, ticker):
         chain = self.getOptionChain(ticker, ticker_dates[0])
