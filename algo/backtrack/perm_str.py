@@ -11,6 +11,11 @@ we walk two paths one with lower case and other apper case
    cC cC  cC cC    
 
 Each leter reprsent edge on the graph not node
+Step1
+ call dfs() twice, one for upper case and other lower case
+Step2:
+ Once len of the inp string reached string from each call will be returned.
+
 """
 import sys
 import os
