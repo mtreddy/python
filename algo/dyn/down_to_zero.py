@@ -24,5 +24,5 @@ print(movesFn(2))
 print(movesFn(3))
 print(movesFn(4))
 print(movesFn(5))
-print(movesFn(428689))
+print(movesFn(45))
 
