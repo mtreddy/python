@@ -42,7 +42,7 @@ def bfs_dir(cur_dir):
                 tstr = it.name
                 #print(tstr)
                 q.put(it)	
-                files.append(tstr)
+                files.append(tstr+"\n")
     return files 
     #return tnode
 		
