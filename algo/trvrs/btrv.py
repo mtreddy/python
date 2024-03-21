@@ -5,22 +5,6 @@ import sys
 class btrv:
     def __init__(self):
         self.mdist = 0
-    def dfs(self, node):
-        if node == None:
-            return 0
-        # This doesn't have any affect except initialize
-        dist = 0
-        print(node.data, dist)
-        dist = self.dfs(node.left)
-        dist+=1
-        print("L", dist, self.mdist)
-        self. mdist=max(dist,self.mdist)
-        dist = self.dfs(node.right)
-        dist+=1
-        print("R",dist, self.mdist)
-        self.mdist=max(dist,self.mdist)
-        return dist
-
     def node_depth(self, node, v):
         if node == None:
             return -1
@@ -59,20 +43,36 @@ class Node:
          self.data = x
          self.left = None
          self.right = None
-
-root = Node(7)
-root.left = Node(13)
-root.right = Node(18)
-root.left.left = Node(23)
-root.left.right = Node(28)
-root.left.right.right = Node(48)
-root.left.right.right.right = Node(68)
-root.right.left = Node(33)
-root.right.right = Node(38)
+case =2
+if case == 0:
+    root = Node(7)
+    root.left = Node(13)
+    root.right = Node(18)
+    root.left.left = Node(23)
+    root.left.right = Node(28)
+    root.left.right.right = Node(48)
+    root.left.right.right.right = Node(68)
+    root.right.left = Node(33)
+    root.right.right = Node(38)
+elif case == 1:
+    root = Node(1)
+    root.right= Node(2)
+    root.right.right=Node(3)
+    root.right.right.right=Node(4)
+    root.right.right.right.right=Node(5)
+elif case == 2:
+    root = Node(1)
+    root.left = Node(2)
+    root.left.left=Node(3)
+    root.left.left.left=Node(4)
+    root.left.left.left.left=Node(5)
+else:
+    print("Invalid case")
 
 bt = btrv()
-#bt.dfs(root)
-#print(" max depth", bt.mdist)
+## Max depth is found by getting the height of the root node
+print(" max depth", bt.mdist)
 
 #print("Node depth for 13", bt.node_depth(root, 69))
-print("Node height for 13", bt.node_height(root, 13))
+if root != None:
+    print("Node height for 13", bt.node_height(root, root.data))

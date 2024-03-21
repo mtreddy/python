@@ -1,0 +1,27 @@
+The Linux kernel's cryptography subsystem plays a crucial role in providing various cryptographic services and functionalities to the operating system and its applications. Below is an overview of the architecture of the Linux kernel cryptography subsystem:
+
+Cryptographic API (Crypto API):
+
+The Cryptographic API (Crypto API) serves as the primary interface for interacting with cryptographic algorithms and operations within the Linux kernel.
+It provides a standardized set of interfaces for cryptographic primitives such as encryption, decryption, hashing, digital signatures, and random number generation.
+This API abstracts the underlying cryptographic algorithms and hardware, allowing kernel components and device drivers to use cryptographic functionality without being tied to specific implementations.
+Algorithm Implementations:
+
+The Linux kernel cryptography subsystem includes implementations of various cryptographic algorithms, including symmetric ciphers (e.g., AES, DES), hash functions (e.g., SHA-1, SHA-256), asymmetric ciphers (e.g., RSA, ECC), and cryptographic modes of operation (e.g., CBC, GCM).
+These algorithm implementations are typically provided as modular kernel components, allowing them to be loaded dynamically as needed.
+Hardware Acceleration Support:
+
+The Linux kernel cryptography subsystem supports hardware-accelerated cryptographic operations through integration with hardware cryptographic accelerators and cryptographic instruction sets (e.g., AES-NI, ARM Crypto Extensions).
+Device drivers for hardware cryptographic accelerators interface with the kernel's crypto subsystem to provide efficient cryptographic processing for supported algorithms.
+Random Number Generation (RNG):
+
+Linux kernel provides a cryptographically secure random number generation (RNG) facility for generating random data required by cryptographic operations and other security-sensitive tasks.
+The RNG subsystem collects entropy from various system sources (e.g., interrupts, keyboard input, hardware sensors) and uses cryptographic algorithms to generate high-quality random numbers.
+Kernel Crypto Userspace Interface (KCAPI):
+
+The Kernel Crypto Userspace Interface (KCAPI) allows user-space applications to access cryptographic functionality provided by the Linux kernel.
+It provides a convenient and efficient way for applications to perform cryptographic operations without needing to implement cryptographic algorithms directly.
+Integration with Other Subsystems:
+
+The Linux kernel cryptography subsystem is integrated with other kernel subsystems, such as the networking stack (e.g., for IPsec VPNs), storage subsystem (e.g., for disk encryption), and security modules (e.g., SELinux), to provide cryptographic services where needed.
+Overall, the Linux kernel cryptography subsystem is designed to provide a flexible, efficient, and secure framework for cryptographic operations within the kernel and for user-space applications running on Linux-based systems. Its modular architecture, hardware acceleration support, and standardized interfaces make it a powerful tool for implementing cryptographic functionality across a wide range of use cases.

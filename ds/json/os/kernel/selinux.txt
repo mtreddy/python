@@ -1,0 +1,30 @@
+SELinux, or Security-Enhanced Linux, is a security feature integrated into the Linux kernel. It provides a flexible Mandatory Access Control (MAC) system, adding an additional layer of security beyond the traditional discretionary access controls (DAC) provided by file permissions.
+
+Here's an overview of SELinux:
+
+Purpose:
+
+SELinux aims to enhance the security of Linux systems by enforcing access controls based on security policies defined by administrators. It provides granular control over access to system resources, such as files, processes, and network ports.
+Architecture:
+
+SELinux operates by enforcing access controls called "security contexts" on various system objects. These contexts include labels associated with files, processes, network ports, and other system resources.
+SELinux defines security policies using a combination of type enforcement (TE), role-based access control (RBAC), and multi-level security (MLS) mechanisms.
+The SELinux architecture includes the kernel component (security module) responsible for enforcing security policies, along with user-space utilities for policy management and configuration.
+Modes of Operation:
+
+SELinux operates in three primary modes: enforcing, permissive, and disabled.
+Enforcing Mode: SELinux actively enforces security policies, denying access attempts that violate the defined rules.
+Permissive Mode: SELinux logs policy violations but does not enforce them, allowing administrators to assess the impact of policy changes without disrupting system operations.
+Disabled Mode: SELinux is entirely disabled, and no access controls are enforced.
+Policy Language:
+
+SELinux policies are written in a domain-specific language (DSL) known as Security Enhanced Policy Language (SEPL or SELinux Policy Language). This language allows administrators to define rules specifying which types of processes can access specific types of resources.
+Use Cases:
+
+SELinux is commonly used in enterprise Linux distributions, particularly in environments requiring strict security measures, such as government, military, and financial institutions.
+It helps mitigate security risks by reducing the impact of vulnerabilities and limiting the scope of potential attacks.
+Configuration and Management:
+
+SELinux policies can be customized and managed using utilities like semanage, setsebool, and audit2allow.
+Administrators can tailor policies to meet specific security requirements while balancing usability and accessibility.
+In summary, SELinux is a powerful security feature for Linux systems, providing Mandatory Access Control capabilities to enforce fine-grained access controls. It enhances system security by mitigating the impact of security vulnerabilities and unauthorized access attempts. However, configuring and managing SELinux policies require expertise and careful consideration of security requirements.

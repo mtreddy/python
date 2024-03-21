@@ -1,0 +1,5 @@
+base ={}
+base["ML"] = ["Regression", "decision"]
+base["NeuralNets"] = [""]
+base["crypto"] = ["symmetric", "asymmetric", "mac", "hmac"]
+base["security"] = ["confidentiality", "Integrity", "Availability"]
