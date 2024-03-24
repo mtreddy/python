@@ -33,17 +33,28 @@ class btrv:
         print("R", right)
         ans = max(left, right)+1
         if node.data == v:
-            height = ans
+            height = ans+1
         return ans
 
 
+    def node_height_min(self, node):
+        if node == None:
+            return 0
+        elif node.left == None and node.right == None:
+            return 1
+        elif node.left != None and node.right == None:
+            return self.node_height_min(node.left) + 1
+        elif node.right != None and node.left == None:
+            return self.node_height_min(node.right) + 1
+        else:
+            return min(self.node_height_min(node.left), self.node_height_min(node.right)) + 1
 
 class Node:
      def __init__(self, x):
          self.data = x
          self.left = None
          self.right = None
-case =2
+case =0
 if case == 0:
     root = Node(7)
     root.left = Node(13)
@@ -66,13 +77,19 @@ elif case == 2:
     root.left.left=Node(3)
     root.left.left.left=Node(4)
     root.left.left.left.left=Node(5)
+elif case == 3:
+    root = Node(3)
+    root.left = Node(9)
+    root.right = Node(20)
+    root.right.left = Node(15)
+    root.right.right = Node(7)
 else:
     print("Invalid case")
 
 bt = btrv()
 ## Max depth is found by getting the height of the root node
-print(" max depth", bt.mdist)
 
 #print("Node depth for 13", bt.node_depth(root, 69))
 if root != None:
-    print("Node height for 13", bt.node_height(root, root.data))
+    #print("Node height for ", bt.node_height(root, root.data))
+    print("Node height for ", bt.node_height_min(root))

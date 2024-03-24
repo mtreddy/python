@@ -1,0 +1,26 @@
+Multi-party computation (MPC) in the context of zero-knowledge proofs (ZKPs) involves multiple parties collaboratively computing a function over their private inputs while keeping those inputs secret. MPC ensures that no single party learns anything beyond the output of the computation. Combining MPC with ZKPs adds an extra layer of privacy and security, allowing parties to jointly prove properties about their inputs without revealing those inputs.
+
+Here's how MPC in ZKPs generally works:
+
+Setup:
+
+The parties involved in the computation agree on a common reference string or parameters for the ZKP protocol. This setup phase may involve a trusted third party or a decentralized setup procedure to generate the necessary parameters.
+Input Sharing:
+
+Each party privately inputs their data or secrets into the computation. These inputs are usually shared among the parties using cryptographic techniques such as secret sharing or secure multiparty computation protocols.
+Computation:
+
+The parties collaboratively perform the desired computation over their shared inputs. This can involve evaluating a function or running a more complex computation securely using MPC protocols.
+Zero-Knowledge Proof Generation:
+
+After computing the result of the function, the parties collaboratively generate a zero-knowledge proof attesting to the correctness of the computation. This proof demonstrates that the computation was performed correctly without revealing any information about the inputs or intermediate steps.
+Verification:
+
+The zero-knowledge proof is then provided to a verifier, which could be another party or an external entity. The verifier can independently verify the proof's validity without learning anything about the inputs or the computation process.
+Privacy and Security:
+
+Combining MPC with ZKPs ensures that each party's input remains private throughout the computation and proof generation process. Even though the parties collaboratively compute the function and generate a proof, no party can learn anything about the other parties' inputs beyond what is revealed in the final output.
+Applications:
+
+MPC in ZKPs has various applications across different domains, including privacy-preserving data analysis, secure auctions, voting systems, and decentralized finance (DeFi). It allows multiple parties to jointly compute and prove properties about their data without compromising confidentiality or integrity.
+In summary, multi-party computation in zero-knowledge proofs enables multiple parties to securely collaborate on computing functions over their private inputs while providing strong privacy guarantees. This combination of cryptographic techniques has broad applications in enhancing privacy, security, and trust in decentralized systems and collaborative environments.
