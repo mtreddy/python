@@ -50,17 +50,13 @@ class btrv:
             return min(self.node_height_min(node.left), self.node_height_min(node.right)) + 1
     def  isSame(self, node1, node2):
           if node1 == None and  node2 != None:
-              print(node1, node2)
               return False
           elif node1 != None and  node2 == None:
-              print(node1, node2)
               return False
           elif node1 == None and  node2 == None:
               return True 
-          print(node1.data, node2.data)
           right = self.isSame(node1.right, node2.right)
           left = self.isSame(node1.left, node2.left)
-          print(left, right)
           if left  == False or  right == False:
               return False
           else:
