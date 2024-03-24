@@ -64,6 +64,14 @@ class btrv:
                   return False
               else:
                   return True
+    def invert(self, node):
+        if node == None:
+            return
+        else:
+            node.left, node.right = node.right, node.left
+        self.invert(node.right)
+        self.invert(node.left)
+        return node
 
 
 
@@ -72,7 +80,7 @@ class Node:
          self.data = x
          self.left = None
          self.right = None
-case =4
+case = 5
 if case == 0:
     root = Node(7)
     root.left = Node(13)
@@ -104,22 +112,37 @@ elif case == 3:
 elif case == 4:
     root1 = Node(1)
     root1.left = Node(2)
-    #root1.right = Node(3)
+    root1.right = Node(3)
     root2 = Node(1)
-    #root2.left = Node(2)
-    root2.right = Node(2)
+    root2.left = Node(2)
+    root2.right = Node(3)
+elif case == 5:
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
 else:
     print("Invalid case")
 
 bt = btrv()
+test_str = "height"
+test_str = "depth"
+test_str = "short_path"
+test_str = "issame"
+test_str = "invert"
 ## Max depth is found by getting the height of the root node
 
-#print("Node depth for 13", bt.node_depth(root, 69))
-if case < 4:
+if test_str == "depth":
+    print("Node depth for 13", bt.node_depth(root, 69))
+
+if test_str == "height":
     if root != None:
-        #print("Node height for ", bt.node_height(root, root.data))
+       print("Node height for ", bt.node_height(root, root.data))
+if test_str == "short_path":
         print("Node height for ", bt.node_height_min(root))
-else:
+
+if test_str == "issame":
     if root1 != None:
         print("Are trees same", bt.isSame(root1, root2))
 
+if test_str == "invert":
+    print("invert", bt.invert(root))
