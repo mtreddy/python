@@ -48,13 +48,35 @@ class btrv:
             return self.node_height_min(node.right) + 1
         else:
             return min(self.node_height_min(node.left), self.node_height_min(node.right)) + 1
+    def  isSame(self, node1, node2):
+          if node1 == None and  node2 != None:
+              print(node1, node2)
+              return False
+          elif node1 != None and  node2 == None:
+              print(node1, node2)
+              return False
+          elif node1 == None and  node2 == None:
+              return True 
+          print(node1.data, node2.data)
+          right = self.isSame(node1.right, node2.right)
+          left = self.isSame(node1.left, node2.left)
+          print(left, right)
+          if left  == False or  right == False:
+              return False
+          else:
+              if node1.data != node2.data:
+                  return False
+              else:
+                  return True
+
+
 
 class Node:
      def __init__(self, x):
          self.data = x
          self.left = None
          self.right = None
-case =0
+case =4
 if case == 0:
     root = Node(7)
     root.left = Node(13)
@@ -83,6 +105,13 @@ elif case == 3:
     root.right = Node(20)
     root.right.left = Node(15)
     root.right.right = Node(7)
+elif case == 4:
+    root1 = Node(1)
+    root1.left = Node(2)
+    #root1.right = Node(3)
+    root2 = Node(1)
+    #root2.left = Node(2)
+    root2.right = Node(2)
 else:
     print("Invalid case")
 
@@ -90,6 +119,11 @@ bt = btrv()
 ## Max depth is found by getting the height of the root node
 
 #print("Node depth for 13", bt.node_depth(root, 69))
-if root != None:
-    #print("Node height for ", bt.node_height(root, root.data))
-    print("Node height for ", bt.node_height_min(root))
+if case < 4:
+    if root != None:
+        #print("Node height for ", bt.node_height(root, root.data))
+        print("Node height for ", bt.node_height_min(root))
+else:
+    if root1 != None:
+        print("Are trees same", bt.isSame(root1, root2))
+
