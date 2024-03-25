@@ -41,7 +41,7 @@ class bbfs:
         if node == None:
             res.append('N')
             return
-        res.append(node.val)
+        res.append(str(node.val))
         self.ser_dfs(node.left)
         self.ser_dfs(node.right)
 
@@ -68,20 +68,23 @@ bt = bbfs()
 test = "level_order"
 test = "level_order_print"
 test = "serialize"
-test = "deserialize"
+#test = "deserialize"
 if test == "level_order":
     print(" level order lists", bt.bfs(root))
 if test == "level_order_print":
     print(" level order lists", bt.print_level_order(root))
 if test == "serialize":
     global res
-    res = []
-    print("serialize", bt.ser_dfs(root), res)
-if test == "deserialize":
     global inp
     global ind
+    res = []
+    print("serialize", bt.ser_dfs(root), res)
+    inp = ",".join(res)
+    print(inp)
+    inp = inp.split(",")
+    print(inp)
+#if test == "deserialize":
     ind = 0
-    inp = [3, 9, 'N', 'N', 20, 15, 'N', 'N', 7, 'N', 'N']
     root = None
     root = bt.deser_dfs()
     
