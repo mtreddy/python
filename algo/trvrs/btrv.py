@@ -72,6 +72,20 @@ class btrv:
         self.invert(node.right)
         self.invert(node.left)
         return node
+    """ Find path whose some is max. This may not need to be going through root"""
+    def max_path_sum(self, node):
+        global res
+        if node == None:
+            return 0
+        left = self.max_path_sum(node.left)
+        right = self.max_path_sum(node.right)
+        #Find max at local level (not root).
+        # There could be -ve values so may not need to include children
+        tmax = max(max(left, right)+node.data, node.data)
+        #at top level we need to include both children and root
+        fmax = max(left + right + node.data, tmax)
+        res = max(fmax, res)
+        return tmax 
 
 
 
@@ -129,6 +143,7 @@ test_str = "depth"
 test_str = "short_path"
 test_str = "issame"
 test_str = "invert"
+test_str = "max_path_sum"
 ## Max depth is found by getting the height of the root node
 
 if test_str == "depth":
@@ -146,3 +161,15 @@ if test_str == "issame":
 
 if test_str == "invert":
     print("invert", bt.invert(root))
+
+if test_str == "max_path_sum":
+    print("max_path_sum ")
+    root = Node(-10)
+    root.left = Node(9)
+    root.right = Node(20)
+    root.right.left = Node(15)
+    root.right.right = Node(7)
+    global res
+    res = 0
+    if root != None:
+        print("max_path_sum", bt.max_path_sum(root), res)

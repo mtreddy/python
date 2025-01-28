@@ -5,21 +5,23 @@ import plotly.graph_objects as go
 def checkindicator(url):
     r= requests.get(url)
     r = r.json()
+    print(r)
     periods = r['series']['docs'][0]['period']
     values = r['series']['docs'][0]['value']
-    dataset = r['series']['docs'][0]['dataset_name']
+    dataset = r['.eries']['docs'][0]['dataset_name']
     indicators = pd.DataFrame(values,index=periods)    
     indicators.columns = [dataset]
     return indicators   
-    
-euro_yields_10y = checkindicator('https://api.db.nomics.world/v22/series/Eurostat/irt_euryld_m/M.EA.INS_FWD.CGB_EA.Y10?observations=1')
-unemployment = checkindicator('https://api.db.nomics.world/v22/series/Eurostat/une_rt_m/M.NSA.TOTAL.PC_ACT.T.EA19?observations=1')
-interest = checkindicator('https://api.db.nomics.world/v22/series/Eurostat/ei_mfir_m/M.NSA.NAP.MF-LTGBY-RT.EU28?observations=1')
-inflation = checkindicator('https://api.db.nomics.world/v22/series/WB/WDI/FP.CPI.TOTL.ZG-EU?observations=1')
+url = "https://api.db.nomics.world/v22/series/Eurostat/irt_euryld_m" 
+euro_yields_10y = checkindicator(url)
+#euro_yields_10y = checkindicator('https://api.db.nomics.world/v22/series/Eurostat/irt_euryld_m/M.EA.INS_FWD.CGB_EA.Y10?observations=1')
+#unemployment = checkindicator('https://api.db.nomics.world/v22/series/Eurostat/une_rt_m/M.NSA.TOTAL.PC_ACT.T.EA19?observations=1')
+#interest = checkindicator('https://api.db.nomics.world/v22/series/Eurostat/ei_mfir_m/M.NSA.NAP.MF-LTGBY-RT.EU28?observations=1')
+#inflation = checkindicator('https://api.db.nomics.world/v22/series/WB/WDI/FP.CPI.TOTL.ZG-EU?observations=1')
 #inflation.columns
-GDPgrowth = checkindicator('https://api.db.nomics.world/v22/series/WB/WDI/NY.GDP.MKTP.KD.ZG-EU?observations=1')
-monthly_change_retail_trade = checkindicator('https://api.db.nomics.world/v22/series/Eurostat/sts_trtu_m/M.TOVT.G47.CA.PCH_SM.EA19?observations=1')
-monthly_change_retail_trade.columns
+#GDPgrowth = checkindicator('https://api.db.nomics.world/v22/series/WB/WDI/NY.GDP.MKTP.KD.ZG-EU?observations=1')
+#monthly_change_retail_trade = checkindicator('https://api.db.nomics.world/v22/series/Eurostat/sts_trtu_m/M.TOVT.G47.CA.PCH_SM.EA19?observations=1')
+#monthly_change_retail_trade.columns
 import plotly.graph_objects as go
 fig = go.Figure()
 fig.add_trace(go.Scatter(
